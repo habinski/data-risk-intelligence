@@ -1,0 +1,6 @@
+<main>
+    <mat-accordion>
+        <app-user-item *ngFor="let user of users let index=index" [index]='index' [user]="user" (onDeleteUser)="deleteUser(user)" (onModifyUser)="modifyUserInfo(user)">
+        </app-user-item>
+    </mat-accordion>
+</main>

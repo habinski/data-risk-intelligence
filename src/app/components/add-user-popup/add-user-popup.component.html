@@ -1,0 +1,36 @@
+<form class="popup">
+    <h1>User</h1>
+    <mat-form-field appearance="fill">
+        <mat-label>First name</mat-label>
+        <input matInput [(ngModel)]="user.firstName" [formControl]="firstName" id="firstName" name="firstName" required>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>Second name</mat-label>
+        <input matInput [(ngModel)]="user.lastName" [formControl]="lastName" id="lastName" name="lastName" required>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>Role</mat-label>
+        <mat-select [(ngModel)]='user.role' [formControl]="role" id="role" name="role" required>
+            <mat-option value="Riskmanager">Riskmanager</mat-option>
+            <mat-option value="Processexpert">Processexpert</mat-option>
+            <mat-option value="Admin">Admin</mat-option>
+            <mat-option value="Auditor">Auditor</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>Enter your email</mat-label>
+
+        <input matInput placeholder="pat@example.com" [formControl]="email" [(ngModel)]='user.email' id="email" name="email" required>
+        <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>Choose a date</mat-label>
+        <input matInput [matDatepicker]="picker" [(ngModel)]="user.birthDate" [formControl]="birthDate">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+</form>
+<div mat-dialog-actions class="btns">
+    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button mat-raised-button color="primary" (click)="onOkClick()" [disabled]='email.invalid || birthDate.invalid || role.invalid || firstName.invalid || lastName.invalid'>Send</button>
+</div>
